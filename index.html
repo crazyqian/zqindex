@@ -67,10 +67,47 @@
             margin: 0 auto;
             transform: translateX(100px) */
         }
+        .in_out{
+            position: absolute;
+            top: 15%;
+            left: 5%;
+            width: 90%;
+            display: none;
+        }
+        .in_out img{
+            width: 100%;
+        }
         #message {
             position: absolute;
-            top: 0px;
-            left: 10%;
+            top: 10%;
+            /* left: 10%; */
+            left: 50%;
+            transform: translateX(-50%)
+            /* text-align: center; */
+        }
+        .sunshine{
+            animation:rotate 1s infinite linear;
+            opacity: 1;
+        }
+        @keyframes rotate
+        {
+            0%   {
+                -ms-opacity:1; /* IE 9 */
+                -moz-opacity:1; /* Firefox */
+                -webkit-opacity:1; /* Safari and Chrome */
+                -o-opacity:1; /* Opera */
+                opacity:1;
+            }
+            50% {                -ms-opacity:0; /* IE 9 */
+                -moz-opacity:0; /* Firefox */
+                -webkit-opacity:0; /* Safari and Chrome */
+                -o-opacity:0; /* Opera */
+                opacity:0;}
+            100% {                -ms-opacity:1; /* IE 9 */
+                -moz-opacity:1; /* Firefox */
+                -webkit-opacity:1; /* Safari and Chrome */
+                -o-opacity:1; /* Opera */
+                opacity:1;}
         }
         .dis{
             display: none;
@@ -99,6 +136,9 @@
         </canvas>
         <p id="message"></p>
         <img src="./images/start.png" id="start">
+    </div>
+    <div class='in_out'>
+        <img src="" alt="">
     </div>
 
     <script>
@@ -137,7 +177,10 @@
                 // $('.zhongqiu').addClass('dis')
                 // $('.lottery').removeClass('dis')
                 $('.zhongqiu').fadeOut(600,function(){
-                    $('.lottery').fadeIn(1000)
+                    $('.lottery').fadeIn(1000,function(){
+                        $('.lottery img').addClass('sunshine')
+                    })
+                    $('.lottery #message').html(username+'同学，你好')
                 })
 
             }else{
@@ -149,14 +192,14 @@
             "success": true,
             "list": [{
                     "id": 100,
-                    "name": "日本温泉游",
+                    "name": "奔驰AMG",
                     "image": "./images/3.png",
                     "rank":1,
                     "percent":3
                 },
                 {
-                    "id": 101,
-                    "name": "奔驰",
+                    "id": 101, 
+                    "name": "日本温泉游",
                     "image": "./images/6.png",
                     "rank":2,
                     "percent":5
@@ -184,7 +227,7 @@
                 },
                 {
                     "id": 105,
-                    "name": "黄鹤楼一日游",
+                    "name": "黄鹤楼游",
                     "image": "./images/6.png",
                     "rank":6,
                     "percent":1
@@ -250,6 +293,7 @@
         // 抽奖
         var throttle = true;
         $("#start").on('click', function () {
+            $('.lottery img').removeClass('sunshine')
 
             var winData = getGift() // 正常情况下获奖信息应该由后台返回
 
@@ -275,17 +319,20 @@
                 // $("#message").html(winData.name)
                 for (const val in Winners) {
                     if(Winners[val].indexOf(username)!= -1){
-                        console.log(val)
-                        if(val='tedeng'){
+                        // if(val=='tedeng'){
 
-                        }else if(val='yisz'){
+                        // }else if(val=='yisz'){
 
-                        }else if(val='yisc'){
+                        // }else if(val=='yisc'){
 
-                        }else if(val='yiwh'){
+                        // }else if(val=='yiwh'){
 
-                        }else if(val='anwei'){
-                        }
+                        // }else if(val=='anwei'){
+                        // }
+                        $('.in_out img').attr('src','./images/'+val+'.png')
+                        $('.in_out').slideDown('slow',function(){
+                            $('.lottery').fadeOut()
+                        })
                     }
                 }
                 throttle = true;

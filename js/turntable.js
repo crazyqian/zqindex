@@ -20,7 +20,7 @@
             disk: ['#ffb933', '#ffe8b5', '#ffb933', '#ffd57c', '#ffb933', '#ffe8b5', '#ffd57c'],
             title: {
                 color: '#5c1e08',
-                font: '30px Arial'
+                font: '19px Arial'
             }
         }
 
