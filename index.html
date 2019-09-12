@@ -72,6 +72,10 @@
             top: 15%;
             left: 5%;
             width: 90%;
+            /* height: 0;
+            overflow: hidden; */
+            height: 1%;
+            /* opacity: 0; */
             display: none;
         }
         .in_out img{
@@ -157,7 +161,7 @@
             yisz:["夏永洪", "冯大成", "余璇", "陈龙建", "李晓燕", "陈情", "徐志高", "韩抗抗", "毛梁平", "李彦峰", "黄志聪", "吴琪", "朱承樱", "黄先针"],
             yisc:["付爱香", "张家平", "刘姣丽", "叶晓青", "杨日光", "张建", "钱敏", "梁文站"],
             yiwh:["粟林", "李海鹤", "陈强", "王权", "郭杨", "徐小方", "储棚", "程飞", "付凯", "杨晓亮", "黎其铮", "吴浩许", "何利民", "施伟", "李欢", "陈燕丽", "詹海迪", "朱科", "隆京河", "梁爽", "王新", "金谡", "杨钒", "邓锡志", "邵钱", "张开", "胡夏鹏", "关翔", "秦玲", "邬礼根", "黎俊杰", "樊颖", "刘新美", "杨士青", "钟萌萌", "彭婷", "周成", "王飞", "闫娟", "程涛", "向红娟", "陈勇", "杨义文", "陈明", "杨姗", "杨宜新", "张春雪", "胡凌轩", "李波", "程万鹏", "姜品德", "张云慧", "杨柳", "路平", "胡浩", "刘言奎", "付新磊", "周子翔", "徐杰", "冯凯翔", "何于华", "王洋", "杨永晶", "朱正平", "王锡城", "吴星桐", "刘川", "刘典超", "彭凤娇"],
-            anwei:['余小梅']
+            anwei:['余小梅','缑家瑞','缑','缑总','万虹','万总','万']
         }
 
         var wheelSurf
@@ -175,12 +179,13 @@
             // debugger;
             if(name_flag){
                 // $('.zhongqiu').addClass('dis')
-                // $('.lottery').removeClass('dis')
+                $('.lottery #message').html(username+'同学，你好')
                 $('.zhongqiu').fadeOut(600,function(){
+                    $('.lottery img').addClass('sunshine')
                     $('.lottery').fadeIn(1000,function(){
-                        $('.lottery img').addClass('sunshine')
+                        // $('.lottery img').addClass('sunshine')
                     })
-                    $('.lottery #message').html(username+'同学，你好')
+                    // $('.lottery #message').html(username+'同学，你好')
                 })
 
             }else{
@@ -192,50 +197,50 @@
             "success": true,
             "list": [{
                     "id": 100,
-                    "name": "奔驰AMG",
-                    "image": "./images/3.png",
+                    "name": "一等奖",
+                    "image": "./images/6.png",
                     "rank":1,
                     "percent":3
                 },
                 {
                     "id": 101, 
-                    "name": "日本温泉游",
-                    "image": "./images/6.png",
+                    "name": "纪念奖",
+                    "image": "./images/3.png",
                     "rank":2,
                     "percent":5
                 },
                 {
                     "id": 102,
-                    "name": "布加迪",
-                    "image": "./images/3.png",
+                    "name": "特别奖",
+                    "image": "./images/1.png",
                     "rank":3,
                     "percent":2
                 },
                 {
                     "id": 103,
-                    "name": "玛莎拉蒂",
+                    "name": "一等奖",
                     "image": "./images/6.png",
                     "rank":4,
                     "percent":49
                 },
                 {
                     "id": 104,
-                    "name": "欧洲一年游",
-                    "image": "./images/3.png",
+                    "name": "特等奖",
+                    "image": "./images/2.png",
                     "rank":5,
                     "percent":30
                 },
                 {
                     "id": 105,
-                    "name": "黄鹤楼游",
-                    "image": "./images/6.png",
+                    "name": "二等奖",
+                    "image": "./images/1.png",
                     "rank":6,
                     "percent":1
                 },
                 {
                     "id": 106,
-                    "name": "海景大别墅",
-                    "image": "./images/3.png",
+                    "name": "特等奖",
+                    "image": "./images/2.png",
                     "rank":7,
                     "percent":10
                 }
@@ -248,10 +253,10 @@
             var totalPercent = 0
             for(var i = 0 ,l = initData.list.length;i<l;i++){
                 totalPercent += initData.list[i].percent
-                console.log(totalPercent,4444,percent,initData.list[i].percent)
+                // console.log(totalPercent,4444,percent,initData.list[i].percent)
 
                 if(percent<=totalPercent){
-                    console.log(initData.list,555,initData.list[i])
+                    // console.log(initData.list,555,initData.list[i])
                     return initData.list[i]
                     // return initData.list[5]
                 }
@@ -295,7 +300,27 @@
         $("#start").on('click', function () {
             $('.lottery img').removeClass('sunshine')
 
-            var winData = getGift() // 正常情况下获奖信息应该由后台返回
+            // var winData = getGift() // 正常情况下获奖信息应该由后台返回
+            for (const val in Winners) {
+                    if(Winners[val].indexOf(username)!= -1){
+                        if(val=='tedeng'){
+                           var winData=initData.list[4]
+                        }else if(val=='yisz'){
+                            var winData=initData.list[3]
+
+                        }else if(val=='yisc'){
+                            var winData=initData.list[3]
+
+                        }else if(val=='yiwh'){
+                            var winData=initData.list[3]
+
+                        }else if(val=='anwei'){
+                            var winData=initData.list[2]
+
+                        }
+                        $('.in_out img').attr('src','./images/'+val+'.png')
+                    }
+                }
 
             $("#message").html('')
             if(!throttle){
@@ -317,8 +342,8 @@
             // 转盘抽奖，
             wheelSurf.lottery((count * angel + angel / 2), function () {
                 // $("#message").html(winData.name)
-                for (const val in Winners) {
-                    if(Winners[val].indexOf(username)!= -1){
+                // for (const val in Winners) {
+                //     if(Winners[val].indexOf(username)!= -1){
                         // if(val=='tedeng'){
 
                         // }else if(val=='yisz'){
@@ -329,12 +354,21 @@
 
                         // }else if(val=='anwei'){
                         // }
-                        $('.in_out img').attr('src','./images/'+val+'.png')
-                        $('.in_out').slideDown('slow',function(){
-                            $('.lottery').fadeOut()
+                        // $('.in_out img').attr('src','./images/'+val+'.png')
+                        // $('.in_out').slideDown('slow',function(){
+                        //     $('.lottery').fadeOut()
+                        // })
+                        // $('.in_out').show().animate({"height": "200px"}, 10000,function(){
+                        //     $('.lottery').fadeOut()
+                        // })
+                        $('.lottery').fadeOut(100)
+                        // $('.in_out').show().animate({"opacity": "1"}, 3500,function(){
+                        // })
+                        $('.in_out').show().animate({"height": "100%"}, 4000,'linear',function(){
                         })
-                    }
-                }
+                        // opacity: 0;
+                    // }
+                // }
                 throttle = true;
             })
         })
